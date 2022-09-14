@@ -10,7 +10,7 @@
 <body>
 	<h1>商品マスタメンテナンスメニュー</h1>
 	<p></p>
-	<a href="./web/jsp/ichiran.jsp?no=1">商品一覧</a><br>
+	<a href="./ListControlServlet">商品一覧</a><br>
 	<a href="./web/jsp/mod.jsp?no=3">商品登録</a><br>
 	<a href="./web/jsp/ichiran.jsp?no=2">商品変更・削除</a>
 </body>

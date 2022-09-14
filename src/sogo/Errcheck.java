@@ -1,51 +1,77 @@
 package sogo;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class Errcheck {
 
-	public static void main(String[] args) {
-		String id = "abc";
-
-		Errcheck e = new Errcheck();
-		String msg = e.numCheck("abc", "123");
-		System.out.println(msg);
-
-	}
-
+	//	public static void main(String[] args) {
+	//		Errcheck e = new Errcheck();
+	//		System.out.println(e.numCheck("abc", "abc"));
+	//		System.out.println(e.numCheck("123", "abc"));
+	//		System.out.println(e.numCheck("123", "-123"));
+	//
+	//	}
 	public String numCheck(String id, String kakaku) {
-
 		String msg = "";
-		String pattern = "^[0-9０-９]+$"; //数字の場合
+		//		String pattern = "^[0-9０-９]+$"; //数字の場合
+		String pattern = "^[0-9０-９]+$|-[0-9０-９]+$";
 		boolean rId = Pattern.matches(pattern, id); //idが数字の場合　true
 		boolean rKakaku = Pattern.matches(pattern, kakaku); //kakakuが数字の場合　true
 
 		if (rId == false || rKakaku == false) {
-			msg = "IDと価格には数字を入力してください";
-		}
-
-		String pattern2 = "^(-[1-9]\\\\d*|0)(\\\\.\\\\d+)?$";
-		boolean mKakaku = Pattern.matches(pattern2, kakaku); //idが数字の場合　true
-
-		if (mKakaku == true) {
-			msg = "IDと価格には整数を入力してください";
-			return msg;
+			msg = "IDと価格には「数字」を入力してください";
+		} else {
+			msg = "IDと価格には「整数」を入力してください";
 		}
 
 		return msg;
 	}
 
-	public String extId(String id) {
+	//	public static void main(String[] args) {
+	//		Errcheck e = new Errcheck();
+	//		e.exitId("00007");
+	//
+	//	}
+
+	public String exitId(String id) {
 
 		String msg = "";
 		ShohinDAO shDao = new ShohinDAO();
-		shDao.selectAll();
+		ArrayList<ShohinBean> daoId = shDao.selectAll();
 
-		if (id.equals(shDao.jouken(id))) {
-
+		for (int i = 0; i < daoId.size(); i++) {
+			String ids = daoId.get(i).getId();
+			if (id.contains(ids)) {
+				msg = "既に存在しています";
+				break;
+			}
 		}
-		return null;
+		return msg;
+	}
 
+	public static void main(String[] args) {
+		Errcheck e = new Errcheck();
+		e.notExitId("10007");
+		e.notExitId("00007");
+
+	}
+
+	public String notExitId(String id) {
+
+		String msg = "";
+		ShohinDAO shDao = new ShohinDAO();
+		ArrayList<ShohinBean> daoId = shDao.selectAll();
+
+		for (int i = 0; i < daoId.size(); i++) {
+			String ids = daoId.get(i).getId();
+			if (id.contains(ids)) {
+				break;
+			} else {
+				msg = "対象データがありません";
+			}
+		}
+		return msg;
 	}
 
 }

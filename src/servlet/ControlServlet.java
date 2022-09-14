@@ -30,6 +30,7 @@ public class ControlServlet extends HttpServlet {
 		String msg = errEcheck.numCheck(id, kakaku);
 		if (msg != null) {
 			//確認画面にフォワード
+			request.setAttribute("msg", msg);
 			String forwardPath = "./web/jsp/mod.jsp?no=3";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(forwardPath);
 			dispatcher.forward(request, response);
@@ -62,10 +63,6 @@ public class ControlServlet extends HttpServlet {
 		} else {
 
 		}
-
-		//		//DBへ登録
-		//		ShohinDAO shDao = new ShohinDAO();
-		//		shDao.insert(shBean.getId(), shBean.getName(), shBean.getKakaku());
 
 	}
 

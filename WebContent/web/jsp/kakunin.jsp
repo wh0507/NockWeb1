@@ -34,7 +34,7 @@ ShohinBean s = (ShohinBean) session.getAttribute("shBean");
 	</div>
 	<br>
 	<div class="form_button">
-		<form action="/NockWeb/ShohinServlet" method="post">
+		<form action="/NockWeb1/ShohinServlet" method="post">
 			<input type="submit" value="<%=status%>">
 		</form>
 		<form action="menu.jsp" method="get">

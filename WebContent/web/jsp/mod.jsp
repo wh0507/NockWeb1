@@ -33,7 +33,7 @@ if (request.getAttribute("msg") != null) {
 	</p>
 	<div class="modTable">
 		<div class="item">
-			<form action="/NockWeb/ControlServlet" method="post">
+			<form action="/NockWeb1/ControlServlet" method="post">
 				<table>
 					<tr>
 						<td>ＩＤ：</td>
